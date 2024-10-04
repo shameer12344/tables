@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grade Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Choose a passing marks</h1>
+    <form id="formgrad">
+        <!-- math subject -->
+        <label for="mathtotal">Total marks of math:</label>
+        <input type="number" name="mathtotal" id="mathtotal" required> <br> <br>
+
+        <label for="obatinmath">Obtain math marks:</label>
+        <input type="number" name="obatinmath" id="obatinmath" required><br> <br>
+
+        <!-- bio -->
+        <label for="engtotal">Total marks of eng:</label>
+        <input type="number" name="engtotal" id="engtotal" required> <br> <br>
+
+        <label for="obatineng">Obtain eng marks:</label>
+        <input type="number" name="obatineng" id="obatineng" required><br> <br>
+
+        <!-- phy -->
+        <label for="phytotal">Total marks of phy:</label>
+        <input type="number" name="phytotal" id="phytotal" required> <br> <br>
+
+        <label for="obatinphy">Obtain phy marks:</label>
+        <input type="number" name="obatinphy" id="obatinphy" required><br> <br>
+
+        <button type="submit">Calculate</button>
+    </form>
+
+    <h3 id="result"></h3>
+</div>
+
+    <script>
+        document.getElementById("formgrad").addEventListener("submit", function(event){
+            event.preventDefault();
+
+            const mathtotal = parseFloat(document.getElementById("mathtotal").value);
+            const obatinmath = parseFloat(document.getElementById("obatinmath").value);
+            const engtotal = parseFloat(document.getElementById("engtotal").value);
+            const obatineng = parseFloat(document.getElementById("obatineng").value);
+            const phytotal = parseFloat(document.getElementById("phytotal").value);
+            const obatinphy = parseFloat(document.getElementById("obatinphy").value);
+
+            // Calculate total marks of subjects
+            const totalMarks = mathtotal + engtotal + phytotal;
+            const obtainedMarks = obatinmath + obatineng + obatinphy;
+            const percentage = (obtainedMarks / totalMarks) * 100;
+
+            let grade;
+            if (percentage < 33) {
+                grade = "Fail";
+            } else if (percentage < 40) {
+                grade = "E";
+            } else if (percentage < 50) {
+                grade = "D";
+            } else if (percentage < 60) {
+                grade = "C";
+            } else if (percentage < 70) {
+                grade = "B";
+            } else if (percentage < 80) {
+                grade = "A";
+            } else {
+                grade = "A+";
+            }
+
+            document.getElementById('result').innerText = `Percentage: ${percentage.toFixed(2)}%, Grade: ${grade}`;
+        });
+    </script>
+</body>
+</html>
+<style>
+    body{
+    font-family: sans-serif;
+    box-sizing: border-box;
+    background-image:linear-gradient(rgb(176, 40, 40),rgb(92, 100, 175), rgb(112, 58, 88));
+    background-repeat: none;
+}
+.container{
+    width: 550px;
+    /* height: 550px; */
+    border-radius: 20px;
+    border: 10px solid black;
+    background-color: linear-gradient(rgb(blue,yellow));
+    margin-left: 450px;
+    margin-top: 150px;
+    box-shadow: linear-gradient(rgb(gray));
+}
+.container #formgrad label{
+    font-size: 20px;
+}
+.container input{
+    height: 20px;
+    margin-top: 15px;
+    width: 200px;
+    border-radius: 10px;
+    background-color: cornsilk;
+    margin-left: 15px;
+}
+.container input:hover{
+    background-color: crimson;
+}
+.container button{
+    background-color: darkred;
+    height: 40px;
+    width: 150px;
+    border-radius: 10px;
+    font-size: 25px;
+    margin-left: 190px;
+}
+.container button:hover{
+    background-color: cornflowerblue;
+}
+.container h1{
+    font-size: 40px;
+    color: white;
+    margin-left: 25px;
+}
+.container h1:hover{
+    color: black;
+}
+</style>
